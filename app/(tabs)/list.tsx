@@ -1,5 +1,6 @@
 import { View, Text, FlatList, StyleSheet, TouchableOpacity } from 'react-native';
 import { useBarcodeContext } from '@/components/BarcodeContext';
+import Barcode from 'react-native-barcode-svg';
 
 export default function ItemList() {
   const { barcodes, removeBarcode } = useBarcodeContext();
@@ -11,9 +12,10 @@ export default function ItemList() {
         keyExtractor={(item) => item.code}
         renderItem={({ item }) => (
           <View style={styles.itemContainer}>
-            <Text style={styles.item}>
-              {item.code} (x{item.count})
-            </Text>
+            <View style={styles.barcodeWrapper}>
+              <Barcode value={item.code} format="EAN13" />
+              <Text style={styles.countText}>x{item.count}</Text>
+            </View>
             <TouchableOpacity
               style={styles.deleteButton}
               onPress={() => removeBarcode(item.code)}
@@ -31,11 +33,18 @@ const styles = StyleSheet.create({
   container: { flex: 1, padding: 20 },
   itemContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
     alignItems: 'center',
-    paddingVertical: 8,
+    marginBottom: 16,
+    justifyContent: 'space-between',
   },
-  item: { fontSize: 16 },
+  barcodeWrapper: {
+    alignItems: 'center',
+  },
+  countText: {
+    fontSize: 14,
+    marginTop: 4,
+    color: 'gray',
+  },
   deleteButton: {
     backgroundColor: '#ff4d4d',
     padding: 6,
