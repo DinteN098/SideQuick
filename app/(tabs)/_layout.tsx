@@ -2,6 +2,8 @@ import { Tabs } from "expo-router";
 import Ionicons from '@expo/vector-icons/Ionicons';
 import Entypo from '@expo/vector-icons/Entypo';
 
+import BarcodeScanner from "@/components/BarcodeScanner";
+
 export default function TabLayout() {
   return(
 
