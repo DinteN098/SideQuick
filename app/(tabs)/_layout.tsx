@@ -1,5 +1,6 @@
 import { Tabs } from "expo-router";
 import Ionicons from '@expo/vector-icons/Ionicons';
+import Entypo from '@expo/vector-icons/Entypo';
 
 export default function TabLayout() {
   return(
@@ -31,6 +32,17 @@ export default function TabLayout() {
             <Ionicons name={focused ? 'home-sharp' : 'home-outline'} color={color} size={24} />
           ),
         }} 
+      />
+
+      <Tabs.Screen 
+        name="list"
+        options={{
+          title:"Item List",
+
+          tabBarIcon: ({ color, focused }) => (
+            <Entypo name="list" size={24} color={color} />
+          ),
+        }}
       />
 
       <Tabs.Screen 
